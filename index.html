@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ICSE 2023 All</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		position: relative;
+	}
+	.texCen{
+		text-align: center;
+
+	}
+	body{
+		width: 100%;
+		height: 100vh;
+		background: #f1f1ff;
+	}
+	.flex{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.c{
+		flex-flow: column;
+	}
+	.w100p{width: 100%;}
+
+	.all{
+		flex-flow: row wrap;
+	}
+
+	.all .btn{
+		width: 175px;
+		padding: 10px;
+		text-transform: capitalize;
+		min-height: 50px;
+		background: #fff;
+		border-radius: 2px;
+		box-shadow: 0 1px 2px #0005;
+		margin: 20px;
+	}
+	.all .btn button{
+		margin: 5px;
+		border: 1px solid #777;
+		padding: 5px 10px;
+		border-radius: 5px;
+	}
+</style>
+<body>
+	<h2 class="texCen" style="margin: 10px">Specimen and Syllabus are here.</h2>
+	<h4 class="texCen" style="margin: 5px">CISCE.ORG has currently removed everything. You can get here only.</h4>
+
+	<div class="all flex">
+	</div>
+	<div class="view"></div>
+<script>
+	var log=console.log;
+	function op(e){return document.querySelector(e)}
+	function opp(e){return document.querySelectorAll(e)}
+
+	var subjects="english_1,english_2,hindi,math,physics,chemistry,biology,civics,geography,computer";
+	subjects=subjects.split(',');
+	var html="";
+	for(var i=0; i<subjects.length; i++){
+		html+=`<div class="btn" onclick="menu(this)" sub='${i}'><h3>${subjects[i]}</h3></div>`;
+	}
+	op(".all").innerHTML=html;
+
+	function menu(e){
+		var sub=subjects[e.getAttribute('sub')];
+		var html=`<h2>${sub}</h2><div class="subMenu">
+			<div class="r">
+				<p>Specimen</p> 
+				<button onclick="view(this,'s')">View</button><button onclick="down(this,'s')">Download</button>
+			</div>
+			<div class="r">
+				<p>Syllabus</p> 
+				<button onclick="view(this)">View</button><button onclick="down(this)">Download</button>
+			</div>
+		</div>`;
+		e.innerHTML=html;
+	}
+
+	function view(elem,s=""){
+		sub=elem.offsetParent.offsetParent.previousElementSibling.innerText.toLowerCase();
+		var link="view.html?name="+s+sub+".pdf";
+		log(location.assign(link))
+	}
+	function down(elem,s=""){
+		sub=elem.offsetParent.offsetParent.previousElementSibling.innerText.toLowerCase();
+		var link="files/"+s+sub+".pdf";
+		window.open(link)
+	}
+</script>
+</body>
+</html>
